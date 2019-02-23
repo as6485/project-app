@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form [formGroup]="adduserForm">
+
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" [(ngModel)]="adduser.firstname" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+          <div *ngIf="f.firstname.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" [(ngModel)]="adduser.lastname" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+          <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Employee Id</label>
+        <input type="text" [(ngModel)]="adduser.empid" formControlName="empid" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.empid.errors }" />
+        <div *ngIf="submitted && f.empid.errors" class="invalid-feedback">
+          <div *ngIf="f.empid.errors.required">Employee id is required</div>
+        </div>
+      </div>
+
+      <button *ngIf="!toggle" class="btn btn-primary" (click)="createUser()">Add</button>
+      <button *ngIf="toggle" class="btn btn-primary" (click)="updateUser(adduser)">Update</button>
+      <button class="btn btn-primary" (click)="resetUser()">Reset</button>
+      <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    </form>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <input [(ngModel)]="searchText" name="search" placeholder="Search..." id="search">
+    <label>Sort:</label>
+    <button class="btn btn-primary" (click)="sortByFname()">First Name</button>
+    <button class="btn btn-primary" (click)="sortByLname()">Last Name</button>
+    <button class="btn btn-primary" (click)="sortById()">Id</button>
+    <hr style="border-top: dotted 1px;" />
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let user of users | filter : searchText">
+        <div class="text-left">
+          <p>{{user.firstname}}</p>
+          <p>{{user.lastname}}</p>
+          <p>{{user.empid}}</p>
+        </div>
+        <div class="text-right">
+          <button class="btn btn-info" (click)="editUser(user)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
