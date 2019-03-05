@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <hr style="border-top: dotted 1px;" />
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let task of tasks">
+        <div class="text-left">
+          <p>{{task.taskid}}</p>
+          <p>{{task.parentid}}</p>
+          <p>{{task.projectid}}</p>
+          <p>{{task.description}}</p>
+          <p>{{task.startDate}}</p>
+          <p>{{task.endDate}}</p>
+          <p>{{task.priority}}</p>
+          <p>{{task.status}}</p>
+        </div>
+        <div class="text-right">
+          <button class="btn btn-info" (click)="editTask(task)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
